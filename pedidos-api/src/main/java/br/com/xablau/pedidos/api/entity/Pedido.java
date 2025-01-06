@@ -17,7 +17,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @Data
 public class Pedido {
-
+    @JsonProperty("id")
     private UUID id = UUID.randomUUID();
     @JsonProperty("cliente")
     private String cliente;
