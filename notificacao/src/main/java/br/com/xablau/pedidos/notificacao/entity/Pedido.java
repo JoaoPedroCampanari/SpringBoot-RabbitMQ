@@ -34,6 +34,34 @@ public class Pedido {
     @JsonIgnore
     private LocalDateTime dataHora = LocalDateTime.now();
 
+    public UUID getId() {
+        return id;
+    }
+
+    public String getCliente() {
+        return cliente;
+    }
+
+    public List<ItemPedido> getItemPedidos() {
+        return itemPedidos;
+    }
+
+    public Double getValorTotal() {
+        return valorTotal;
+    }
+
+    public String getEmailNotificacao() {
+        return emailNotificacao;
+    }
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public LocalDateTime getDataHora() {
+        return dataHora;
+    }
+
     @Override
     public String toString() {
         return "Pedido{" +
