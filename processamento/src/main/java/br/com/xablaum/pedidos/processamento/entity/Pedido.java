@@ -11,6 +11,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -43,28 +44,56 @@ public class Pedido {
         return id;
     }
 
+    public void setId(UUID id) {
+        this.id = id;
+    }
+
     public String getCliente() {
         return cliente;
+    }
+
+    public void setCliente(String cliente) {
+        this.cliente = cliente;
     }
 
     public List<ItemPedido> getItemPedidos() {
         return itemPedidos;
     }
 
+    public void setItemPedidos(List<ItemPedido> itemPedidos) {
+        this.itemPedidos = itemPedidos;
+    }
+
     public Double getValorTotal() {
         return valorTotal;
+    }
+
+    public void setValorTotal(Double valorTotal) {
+        this.valorTotal = valorTotal;
     }
 
     public String getEmailNotificacao() {
         return emailNotificacao;
     }
 
+    public void setEmailNotificacao(String emailNotificacao) {
+        this.emailNotificacao = emailNotificacao;
+    }
+
     public Status getStatus() {
         return status;
     }
 
+    public void setStatus(Status status) {
+        this.status = status;
+    }
+
     public LocalDateTime getDataHora() {
         return dataHora;
+    }
+
+    public void setDataHora(LocalDateTime dataHora) {
+        this.dataHora = dataHora;
     }
 
     @Override

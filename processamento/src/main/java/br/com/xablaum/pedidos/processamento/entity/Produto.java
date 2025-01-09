@@ -17,12 +17,9 @@ import java.util.UUID;
 @Table(name = "produto")
 public class Produto {
 
-    @JsonProperty("id")
     @Id
     private UUID id = UUID.randomUUID();
-    @JsonProperty("nome")
     private String nome;
-    @JsonProperty("valor")
     private Double valor;
 
     @Override
