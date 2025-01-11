@@ -1,9 +1,6 @@
 package br.com.xablaum.pedidos.processamento.config;
 
-import org.springframework.amqp.core.Binding;
-import org.springframework.amqp.core.BindingBuilder;
-import org.springframework.amqp.core.FanoutExchange;
-import org.springframework.amqp.core.Queue;
+import org.springframework.amqp.core.*;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 import org.springframework.amqp.rabbit.core.RabbitAdmin;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
@@ -24,9 +21,17 @@ public class RabbitMQConfig {
     @Value("${rabbitmq.queue.name}")
     private String queueName;
 
+    @Value("${rabbit.direct.exchange.name}")
+    private String exchageProcessamento;
+
     @Bean
     public FanoutExchange pedidosExchange() {
         return new FanoutExchange(exchangeName);
+    }
+
+    @Bean
+    public DirectExchange pedidosExchangeProcessamento(){
+        return new DirectExchange(exchageProcessamento);
     }
 
     @Bean

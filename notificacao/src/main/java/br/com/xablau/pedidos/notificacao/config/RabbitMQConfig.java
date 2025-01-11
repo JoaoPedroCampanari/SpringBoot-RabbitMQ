@@ -31,6 +31,12 @@ public class RabbitMQConfig {
     @Value("${rabbitmq.queue.dlq.name}")
     private String queueDlqName;
 
+    @Value("${rabbit.direct.exchange.name}")
+    private String exchangePedidoProcessamento;
+
+    @Value("${rabbit.processo.queue.name}")
+    private String queueNotificacaoProcessamento;
+
     @Bean
     public FanoutExchange pedidosExchange() {
         return new FanoutExchange(exchangeName);
@@ -39,6 +45,11 @@ public class RabbitMQConfig {
     @Bean
     public FanoutExchange pedidosDlxExchange() {
         return new FanoutExchange(exchangeDlxName);
+    }
+
+    @Bean
+    public DirectExchange pedidosProcessamentoExchange() {
+        return new DirectExchange(exchangePedidoProcessamento);
     }
 
     @Bean
@@ -54,6 +65,11 @@ public class RabbitMQConfig {
     }
 
     @Bean
+    public Queue notificacaoPedidoProcessadoQueue() {
+        return new Queue(queueNotificacaoProcessamento);
+    }
+
+    @Bean
     public Binding binding(){
         return BindingBuilder.bind(notificacaoQueue()).to(pedidosExchange());
     }
@@ -61,6 +77,11 @@ public class RabbitMQConfig {
     @Bean
     public Binding bindingDlxDlq(){
         return BindingBuilder.bind(notificacaoDlqQueue()).to(pedidosDlxExchange());
+    }
+
+    @Bean
+    public Binding bindingPedidoProcessado(){
+        return BindingBuilder.bind(notificacaoPedidoProcessadoQueue()).to(pedidosProcessamentoExchange()).with("processamento");
     }
 
 

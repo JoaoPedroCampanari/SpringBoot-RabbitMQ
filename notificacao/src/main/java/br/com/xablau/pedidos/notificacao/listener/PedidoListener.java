@@ -19,11 +19,17 @@ public class PedidoListener {
         this.emailService = emailService;
     }
 
-    @RabbitListener(queues = "pedidos.v1.pedido-criado.gerar-notificacao")
+    @RabbitListener(queues = "${rabbitmq.queue.name}")
     public void enviarNotificacao(Pedido pedido){
 
-        logger.info("Noficacao gerada: {}", pedido.toString());
-        emailService.enviarEmail(pedido);
+        logger.info("Notificacao Pedido criado: {}", pedido.toString());
+        emailService.enviarEmailPedidoCriado(pedido);
+    }
+
+    @RabbitListener(queues = "${rabbit.processo.queue.name}")
+    public void enviarNotificacaoPedidoProcessado(Pedido pedido){
+        logger.info("Notificacao Pedido processado: {}", pedido.toString());
+        emailService.enviarEmailPedidoProcessado(pedido);
     }
 
 }

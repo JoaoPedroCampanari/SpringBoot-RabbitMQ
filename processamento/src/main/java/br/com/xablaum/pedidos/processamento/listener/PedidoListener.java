@@ -23,4 +23,5 @@ public class PedidoListener {
         pedido.setStatus(Status.PROCESSADO);
         pedidoService.salvarPedido(pedido);
     }
+
 }
