@@ -11,8 +11,8 @@ services:
       - '15672:15672'
       - '5672:5672'
     volumes:
-      - rabbitmq_data:/var/lib/rabbitmq
-      - rabbitmq_log:/var/lib/rabbitmq
+      - ./dockerVolumes/rabbitmq_data:/var/lib/rabbitmq
+      - ./dockerVolumes/rabbitmq_log:/var/lib/rabbitmq
 
   mailhog:
     image: mailhog/mailhog:latest
@@ -20,6 +20,8 @@ services:
     ports:
       - '1025:1025'
       - '8025:8025'
+    volumes:
+      - ./dockerVolumes/mailhog_data:/mailhog/data
 
   postgres:
     image: postgres:15.7
@@ -31,7 +33,7 @@ services:
     ports:
       - '5432:5432'
     volumes:
-      - postgres_data:/var/lib/postgresql/data
+      - ./dockerVolumes/postgres_data:/var/lib/postgresql/data
 
   pgadmin:
     image: dpage/pgadmin4
@@ -44,7 +46,7 @@ services:
     depends_on:
       - postgres
     volumes:
-      - pgadmin_data:/var/lib/pgadmin
+      - ./dockerVolumes/pgadmin_data:/var/lib/pgadmin
 
 volumes:
   postgres_data:
